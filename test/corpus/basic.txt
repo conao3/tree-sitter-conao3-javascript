@@ -1,9 +1,496 @@
-=====
-Basic
-=====
+==================
+Single line comments
+==================
 
-hello
+// This is a comment
+let x = 1;
 
 ---
 
-(source_file)
+(source_file
+  (comment)
+  (statement
+    (variable_declaration_statement
+      (identifier)
+      (expression
+        (number)))))
+
+==================
+Multiline comments
+==================
+
+/* This is a
+   multiline comment */
+let x = 1;
+
+---
+
+(source_file
+  (statement
+    (expression_statement
+      (expression)))
+  (statement
+    (variable_declaration_statement
+      (identifier)
+      (expression
+        (number)))))
+
+==================
+Variable declarations
+==================
+
+let x = 42;
+var y = "hello";
+const z = true;
+
+---
+
+(source_file
+  (statement
+    (variable_declaration_statement
+      (identifier)
+      (expression
+        (number))))
+  (statement
+    (variable_declaration_statement
+      (identifier)
+      (expression
+        (string))))
+  (statement
+    (variable_declaration_statement
+      (identifier)
+      (expression
+        (boolean)))))
+
+==================
+Function declarations
+==================
+
+function add(x, y) {
+  return x + y;
+}
+
+---
+
+(source_file
+  (statement
+    (function_declaration_statement
+      (identifier)
+      (identifier)
+      (identifier)
+      (block
+        (statement
+          (return_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (identifier))))))))))
+
+==================
+Class declarations
+==================
+
+class Person {
+  function greet() {
+    return "hello";
+  }
+}
+
+---
+
+(source_file
+  (statement
+    (class_declaration_statement
+      (identifier)
+      (block
+        (statement
+          (function_declaration_statement
+            (identifier)
+            (block
+              (statement
+                (return_statement
+                  (expression
+                    (string)))))))))))
+
+==================
+If statements
+==================
+
+if (x > 0) {
+  return true;
+} else {
+  return false;
+}
+
+---
+
+(source_file
+  (statement
+    (if_statement
+      (expression
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (number))))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (boolean)))))
+      (block
+        (statement
+          (return_statement
+            (expression
+              (boolean))))))))
+
+==================
+For statements
+==================
+
+for (i = 0; i < 10; i = i + 1) {
+  x = x + 1;
+}
+
+---
+
+(source_file
+  (statement
+    (for_statement
+      (expression
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (number))))
+      (expression
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (number))))
+      (expression
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (binary_expression
+              (expression
+                (identifier))
+              (expression
+                (number))))))
+      (block
+        (statement
+          (expression_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (number))))))))))))
+
+==================
+While statements
+==================
+
+while (x > 0) {
+  x = x - 1;
+}
+
+---
+
+(source_file
+  (statement
+    (while_statement
+      (expression
+        (binary_expression
+          (expression
+            (identifier))
+          (expression
+            (number))))
+      (block
+        (statement
+          (expression_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (number))))))))))))
+
+==================
+Break and continue
+==================
+
+while (true) {
+  if (x > 10) break;
+  if (x < 0) continue;
+  x = x + 1;
+}
+
+---
+
+(source_file
+  (statement
+    (while_statement
+      (expression
+        (boolean))
+      (block
+        (statement
+          (if_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (number))))
+            (block
+              (statement
+                (break_statement)))))
+        (statement
+          (if_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (number))))
+            (block
+              (statement
+                (continue_statement)))))
+        (statement
+          (expression_statement
+            (expression
+              (binary_expression
+                (expression
+                  (identifier))
+                (expression
+                  (binary_expression
+                    (expression
+                      (identifier))
+                    (expression
+                      (number))))))))))))
+
+==================
+Function calls
+==================
+
+console.log("Hello");
+add(1, 2);
+Math.max(1, 2, 3);
+
+---
+
+(source_file
+  (statement
+    (expression_statement
+      (expression
+        (call_expression
+          (callee
+            (expression
+              (member_expression
+                (object
+                  (expression
+                    (identifier)))
+                (property
+                  (identifier)))))
+          (arguments
+            (expression
+              (string)))))))
+  (statement
+    (expression_statement
+      (expression
+        (call_expression
+          (callee
+            (expression
+              (identifier)))
+          (arguments
+            (expression
+              (number))
+            (expression
+              (number)))))))
+  (statement
+    (expression_statement
+      (expression
+        (call_expression
+          (callee
+            (expression
+              (member_expression
+                (object
+                  (expression
+                    (identifier)))
+                (property
+                  (identifier)))))
+          (arguments
+            (expression
+              (number))
+            (expression
+              (number))
+            (expression
+              (number))))))))
+
+==================
+Member and index expressions
+==================
+
+obj.prop;
+arr[0];
+obj.method().prop;
+
+---
+
+(source_file
+  (statement
+    (expression_statement
+      (expression
+        (member_expression
+          (object
+            (expression
+              (identifier)))
+          (property
+            (identifier))))))
+  (statement
+    (expression_statement
+      (expression
+        (index_expression
+          (object
+            (expression
+              (identifier)))
+          (index
+            (expression
+              (number)))))))
+  (statement
+    (expression_statement
+      (expression
+        (member_expression
+          (object
+            (expression
+              (call_expression
+                (callee
+                  (expression
+                    (member_expression
+                      (object
+                        (expression
+                          (identifier)))
+                      (property
+                        (identifier)))))
+                (arguments))))
+          (property
+            (identifier)))))))
+
+==================
+Binary expressions
+==================
+
+1 + 2 * 3;
+x && y || z;
+a === b;
+c !== d;
+
+---
+
+(source_file
+  (statement
+    (expression_statement
+      (expression
+        (binary_expression
+          (left
+            (expression
+              (number)))
+          (operator)
+          (right
+            (expression
+              (binary_expression
+                (left
+                  (expression
+                    (number)))
+                (operator)
+                (right
+                  (expression
+                    (number))))))))))
+  (statement
+    (expression_statement
+      (expression
+        (binary_expression
+          (left
+            (expression
+              (binary_expression
+                (left
+                  (expression
+                    (identifier)))
+                (operator)
+                (right
+                  (expression
+                    (identifier))))))
+          (operator)
+          (right
+            (expression
+              (identifier)))))))
+  (statement
+    (expression_statement
+      (expression
+        (binary_expression
+          (left
+            (expression
+              (identifier)))
+          (operator)
+          (right
+            (expression
+              (identifier)))))))
+  (statement
+    (expression_statement
+      (expression
+        (binary_expression
+          (left
+            (expression
+              (identifier)))
+          (operator)
+          (right
+            (expression
+              (identifier))))))))
+
+==================
+Unary expressions
+==================
+
+!true;
+-42;
++x;
+
+---
+
+(source_file
+  (statement
+    (expression_statement
+      (expression
+        (unary_expression
+          (operator)
+          (argument
+            (expression
+              (boolean)))))))
+  (statement
+    (expression_statement
+      (expression
+        (unary_expression
+          (operator)
+          (argument
+            (expression
+              (number)))))))
+  (statement
+    (expression_statement
+      (expression
+        (unary_expression
+          (operator)
+          (argument
+            (expression
+              (identifier))))))))
