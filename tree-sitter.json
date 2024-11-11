@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "conao3_javascript",
+      "camelcase": "Conao3Javascript",
+      "scope": "source.conao3_javascript",
+      "file-types": [
+        ".js"
+      ],
+      "injection-regex": "^conao3_javascript$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "Apache-2.0",
+    "description": "Conao3Javascript grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Naoya Yamashita",
+        "email": "conao3@gmail.com",
+        "url": "https://conao3.com/"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/conao3/tree-sitter-conao3-javascript"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "tree-sitter-conao3-javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Naoya Yamashita <conao3@gmail.com>",
+  "license": "Apache-2.0",
+  "description": "",
+  "devDependencies": {
+    "tree-sitter-cli": "^0.24.4"
+  }
+}
