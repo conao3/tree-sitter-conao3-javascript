@@ -92,3 +92,11 @@ test:
 	$(TS) test
 
 .PHONY: all install uninstall clean test
+
+.PHONY: tree-sitter.generate
+tree-sitter.generate:
+	npx tree-sitter generate
+
+.PHONY: tree-sitter.test
+tree-sitter.test:
+	npx tree-sitter test
